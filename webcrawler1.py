@@ -1,0 +1,14 @@
+import requests
+from bs4 import BeautifulSoup
+def simple_scraper_with_bs(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        soup = BeautifulSoup(response.content, 'html.parser')
+        print("Title:", soup.title.string)
+        print("Content")
+        print(soup.get_text())
+    else:
+        print("Failed to fetch the page. Status_code:", response.status_code)
+
+url_to_scrap = 'http://ajce.in'
+simple_scraper_with_bs(url_to_scrap)
